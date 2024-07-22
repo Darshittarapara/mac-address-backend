@@ -3,11 +3,13 @@ const MacAddress = require('../model/MacModal');
 exports.getMacAddress = async (req, res) => {
     const data = await new MacAddress().getMacAddress()
 console.log('data', data)
-    if (data['Wi-Fi']) {
+Object.entries(data).forEach(([key, value]) => {
+    console.log(key, value)
+    if (data[key].mac) {
         res.status(200).json({
-            mac: data['Wi-Fi']?.mac,
+            mac: value?.mac,
             status: true,
-            ip: data['Wi-Fi']?.ipv4,
+            ip: value?.ipv4,
             message: "Data fetch succssfully"
         })
 
@@ -17,4 +19,6 @@ console.log('data', data)
         status: false,
         message: "Something went wrong"
     })
+})
+   
 }
