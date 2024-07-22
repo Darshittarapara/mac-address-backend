@@ -2,7 +2,7 @@ const MacAddress = require('../model/MacModal');
 
 exports.getMacAddress = async (req, res) => {
     const data = await new MacAddress().getMacAddress()
-
+console.log('data', data)
     if (data['Wi-Fi']) {
         res.status(200).json({
             mac: data['Wi-Fi']?.mac,
