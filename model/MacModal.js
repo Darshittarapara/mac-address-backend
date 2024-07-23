@@ -1,12 +1,22 @@
-const address = require("address");
+const {address} = require("address");
+const findMacAddress = require('../utils/wifiControl')
 class MacAddress {
-  getIPAddress() {
-    const response = address.getInterfaceAddress();
-    console.log('response', response)
-    return {
-      ip: response?.address,
-      mac:response?.mac,
-    };
+  async getIPAddress(res) {
+    // const response = address.getInterfaceAddress();
+    // console.log('response', response)
+   return await findMacAddress(res)
+    // let ip =''
+    // let mac = ''
+    //   address('Wi-Fi', (err, data) => {
+    //     if(!err) {
+    //         ip = data.ip;
+    //         mac = data.mac
+    //     }
+    //   })
+    // return {
+    //   ip,
+    //   mac
+    // };
   }
 }
 
